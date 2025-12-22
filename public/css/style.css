@@ -66,6 +66,25 @@ body{
     margin-right:1rem ;
 }
 
+/* MOBILE NAVBAR FIX */
+@media (max-width: 768px) {
+  .navbar-collapse {
+    position: fixed;
+    top: 5rem;               /* height of navbar */
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 1.5rem;
+    z-index: 1050;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+
+  .navbar-nav {
+    gap: 0.75rem;
+  }
+}
+
+
 .listing-card{
     border: none !important;
     margin-bottom: 2rem;
