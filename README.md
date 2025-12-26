@@ -22,6 +22,6 @@ WanderLust is a full-stack web application inspired by Airbnb, where users can e
 - Bootstrap
 - Mapbox API
 
-#manoj
+## You can watch the live website here 👇👇
 
-This is my website link: https://wanderlust-4ysj.onrender.com/
+https://wanderlust-4ysj.onrender.com/
