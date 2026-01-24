@@ -43,12 +43,10 @@ router.get("/", wrapAsync(async (req, res)=>{
     res.render("./listings/index.ejs", {allListings});
 }));
 
-//new route
 router.get("/new", isLoggedIn ,(req, res)=>{
     res.render("./listings/new.ejs");
 });
 
-//detiled id route
 router.get("/:id", wrapAsync(async (req, res)=>{
     let {id}=req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -69,12 +67,9 @@ router.get("/:id", wrapAsync(async (req, res)=>{
     res.render("./listings/show.ejs", {listing});
 }))
 
-
-//update route
 router.put("/:id", isLoggedIn, isOwner ,upload.single("listing[image]") ,validateListing,wrapAsync(async(req, res)=>{
     let {id}=req.params
     let listing=req.body.listing;
-    // console.log(listing)
     await Listing.findByIdAndUpdate(id, listing);
 
     if(typeof req.file!=="undefined"){
@@ -89,7 +84,6 @@ router.put("/:id", isLoggedIn, isOwner ,upload.single("listing[image]") ,validat
     res.redirect(`/listings/${id}`);
 }));
 
-//edit route
 router.get("/:id/edit", isLoggedIn,isOwner , wrapAsync(async(req, res)=>{
     let {id}=req.params;
     let listing=await Listing.findById(id);
@@ -102,11 +96,6 @@ router.get("/:id/edit", isLoggedIn,isOwner , wrapAsync(async(req, res)=>{
     res.render("./listings/edit.ejs", {listing, originalImage});
 }));
 
-
-
-
-
-//delete Route
 router.delete("/:id", isLoggedIn,isOwner , wrapAsync(async(req, res)=>{
     let {id}=req.params;
     await Listing.findByIdAndDelete(id);

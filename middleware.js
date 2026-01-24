@@ -4,7 +4,6 @@ const ExpressError = require("./utils/ExpressError.js");
 const Listing = require("./models/listing");
 const Review = require("./models/review");
 
-// ================= AUTH =================
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
         req.session.redirectUrl = req.originalUrl;
@@ -21,7 +20,6 @@ module.exports.savedRedirectUrl = (req, res, next) => {
     next();
 };
 
-// ================= OWNER CHECK =================
 module.exports.isOwner = async (req, res, next) => {
     let { id } = req.params;
     let listing = await Listing.findById(id);
@@ -39,7 +37,6 @@ module.exports.isOwner = async (req, res, next) => {
     next();
 };
 
-// ================= VALIDATION =================
 module.exports.validateListing = (req, res, next) => {
     let { error } = listingSchema.validate(req.body);
     if (error) {
@@ -56,7 +53,6 @@ module.exports.validateReview = (req, res, next) => {
     next();
 };
 
-// ================= REVIEW AUTHOR =================
 module.exports.isReviewAuthor = async (req, res, next) => {
     let { id, reviewId } = req.params;
     let review = await Review.findById(reviewId);

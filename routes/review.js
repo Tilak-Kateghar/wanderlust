@@ -8,9 +8,6 @@ const Review=require("../models/review.js");
 const mongoose=require("mongoose");
 const {validateReview, isReviewAuthor, isLoggedIn}=require("../middleware.js");
 
-
-
-//Delete Review Route
 router.delete("/:reviewId", isLoggedIn, isReviewAuthor, wrapAsync(async(req, res)=>{
     let {id, reviewId}=req.params;
     await Listing.findByIdAndUpdate(id, {$pull:{reviews: reviewId}});
@@ -19,7 +16,6 @@ router.delete("/:reviewId", isLoggedIn, isReviewAuthor, wrapAsync(async(req, res
     res.redirect(`/listings/${id}`);
 }));
 
-// Reviews Post Route
 router.post("/", validateReview, wrapAsync(async(req, res)=>{
     let listing= await Listing.findById(req.params.id);
     let newReview = new Review(req.body.review);
