@@ -8,12 +8,12 @@
             
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
-                    <input type="text" name="listing[title]" value="<%= listing.title%>" class="form-control" required><br>
+                    <input type="text" name="listing[title]" value="<%= listing.title%>" class="form-control" required><br><br>
                 </div>
     
                 <div class="mb-3">
                     <label for="description" class="form-label">Descripion</label>
-                    <textarea name="listing[description]" class="form-control" rows="4" required><%= listing.description%></textarea><br>
+                    <textarea name="listing[description]" class="form-control" rows="4" required><%= listing.description%></textarea><br><br>
                 </div>
                 
                 <div class="mb-3 col-md-1">
@@ -22,27 +22,28 @@
 
                 <div class="mb-3">
                     <label for="image" class="form-label">Upload New Image</label>
-                    <input type="file" name="listing[image]"  class="form-control" ><br>
+                    <input type="file" name="listing[image]"  class="form-control" ><br><br>
                 </div>
             
                 <div class="row">
                 <div class="mb-3 col-md-4">
                         <label for="price" class="form-label">Price</label>
-                        <input type="text" name="listing[price]" value="<%= listing.price%>" class="form-control" required><br>
+                        <input type="text" name="listing[price]" value="<%= listing.price%>" class="form-control" required><br><br>
                 </div>
         
                 <div class="mb-3 col-md-8">
                         <label for="country" class="form-label">Country</label>
-                        <input type="text" name="listing[country]" value="<%= listing.country%>" class="form-control" required><br>
+                        <input type="text" name="listing[country]" value="<%= listing.country%>" class="form-control" required><br><br>
                 </div>
+            </div>
     
             <div class="mb-3">
                     <label for="location" class="form-label">Location</label>
-                    <input type="text" name="listing[location]" value="<%= listing.location%>" class="form-control" required><br>
+                    <input type="text" name="listing[location]" value="<%= listing.location%>" class="form-control" required><br><br>
             </div>
             <button class="btn btn-dark edit-btn">Edit</button>
+            <br>
             <br>
         </form>
     </div>
 </div>
-
