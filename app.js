@@ -4,7 +4,9 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 
-const port = process.env.PORT;
+app.set("trust proxy", 1); // REQUIRED FOR RENDER + MOBILE
+
+const port = process.env.PORT || 8080;
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
@@ -40,6 +42,10 @@ mongoose.connect(dbUrl)
 const store = MongoStore.create({
   mongoUrl: dbUrl,
   collectionName: "sessions",
+  crypto: {
+    secret: process.env.SECRET,
+  },
+  touchAfter: 24 * 3600,
 });
 
 app.use(session({
@@ -49,6 +55,8 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
     maxAge: 7 * 24 * 60 * 60 * 1000
   }
 }));
@@ -69,6 +77,7 @@ app.use((req, res, next) => {
   next();
 });
 
+/* ROOT ROUTE */
 app.get("/", (req, res) => {
   res.redirect("/listings");
 });
@@ -124,5 +133,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port, () => {
-  console.log("Server is listening to port 8080");
+  console.log(`Server is listening on port ${port}`);
 });
